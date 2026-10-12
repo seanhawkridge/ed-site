@@ -239,9 +239,6 @@
     .letter-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
     .letter-list li { border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 20px; }
     .letter-list button { flex: 1; }
-    .letter-list .pdf { color: var(--accent); font-size: .9rem; font-weight: 600; white-space: nowrap; text-decoration: none; }
-    .letter-list .pdf::before { content: "\2193  "; }
-    .letter-list .pdf:hover { text-decoration: underline; }
     .letter-list button {
       width: 100%; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
       padding: 18px 4px; background: none; border: 0; color: var(--text); font: inherit; text-align: left; cursor: pointer;
@@ -250,7 +247,7 @@
     .letter-list button span { color: var(--muted); font-size: .95rem; flex: 1; }
     .letter-list button::after { content: "Read letter \2192"; color: var(--accent-2); font-size: .9rem; font-weight: 600; white-space: nowrap; }
     .letter-list button:hover strong, .letter-list button:focus-visible strong { color: var(--accent); }
-    @media (max-width: 560px) { .letter-list li { flex-direction: column; gap: 0; } .letter-list li .pdf { padding: 0 4px 18px; } .letter-list li:has(.pdf) button { padding-bottom: 8px; } .letter-list button { flex-direction: column; gap: 4px; } .letter-list button::after { margin-top: 6px; } }
+    @media (max-width: 560px) { .letter-list li { flex-direction: column; gap: 0; } .letter-list button { flex-direction: column; gap: 4px; } .letter-list button::after { margin-top: 6px; } }
 
     /* Letter modal */
     dialog.letter-modal {
@@ -500,7 +497,7 @@
           <li><button type="button" data-letter="letter-crowded-room"><strong>Mark Knightley</strong><span>Crowded Room theatre company</span></button></li>
           <li><button type="button" data-letter="letter-clare-campbell"><strong>Clare Campbell</strong><span>Gosport-based playwright</span></button></li>
           <li><button type="button" data-letter="letter-motiv8"><strong>Motiv8</strong><span>On Too Hot To Handel</span></button></li>
-          <li><button type="button" data-letter="letter-hct"><strong>Laura Bullivant</strong><span>Cultural Development Manager, Hampshire Cultural Trust</span></button><a class="pdf" href="docs/hct-letter-of-support.pdf" download>Download as PDF</a></li>
+          <li><button type="button" data-letter="letter-hct"><strong>Laura Bullivant</strong><span>Cultural Development Manager, Hampshire Cultural Trust</span></button></li>
         </ul>
 
         <h3 class="docs-heading">Project documents</h3>
