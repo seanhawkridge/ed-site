@@ -12,6 +12,7 @@
   <meta property="og:description" content="One-sentence summary of the project.">
   <meta property="og:image" content="images/hero.jpg">
 
+  <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -85,6 +86,8 @@
     }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
     .nav .brand { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text); white-space: nowrap; }
+    .nav .brand { display: inline-flex; align-items: center; gap: 10px; }
+    .brand-logo { width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255, 43, 214, .5); }
     .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
     .nav a.link { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; }
     .nav a.link:hover, .nav a.link.active { color: var(--accent); }
@@ -101,6 +104,11 @@
         url("images/hero.jpg"),
         linear-gradient(120deg, var(--neon-pink), var(--neon-violet) 50%, var(--neon-cyan));
       color: #fff;
+    }
+    .hero-logo {
+      width: clamp(120px, 18vw, 180px); height: auto; aspect-ratio: 1; border-radius: 50%;
+      background: #fff; margin-bottom: 28px;
+      box-shadow: 0 0 0 4px rgba(255,255,255,.15), 0 0 40px rgba(255, 43, 214, .6), 0 0 80px rgba(0, 234, 255, .3);
     }
     .hero-media .wrap { padding-bottom: 64px; padding-top: 120px; }
     .hero h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); max-width: 820px; text-shadow: 0 0 24px rgba(255, 43, 214, .55); }
@@ -135,19 +143,56 @@
       border-color: transparent transparent transparent var(--accent);
     }
 
-    /* Quotes */
-    .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
-    .quote { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin: 0; display: flex; flex-direction: column; }
-    .quote blockquote { margin: 0 0 20px; font-family: var(--serif); font-size: 1.15rem; line-height: 1.5; flex: 1; }
-    .quote blockquote::before { content: "\201C"; display: block; font-size: 3rem; line-height: .8; color: var(--accent); margin-bottom: 6px; }
-    .quote figcaption { display: flex; align-items: center; gap: 12px; }
-    .quote figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: var(--accent-soft); }
-    .quote .name { font-weight: 600; display: block; }
-    .quote .role { color: var(--muted); font-size: .9rem; }
-    .quote.featured { grid-column: 1 / -1; background: linear-gradient(120deg, #b0127f, #5a16c9); color: #fff; border: 0; box-shadow: 0 0 40px rgba(255, 43, 214, .35); }
-    .quote.featured blockquote { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
-    .quote.featured blockquote::before { color: rgba(255,255,255,.6); }
-    .quote.featured .role { color: rgba(255,255,255,.8); }
+    /* Support: shared */
+    .support-group { margin-top: 64px; }
+    .support-group > h3 { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin-bottom: 24px; }
+    .cite { display: block; font-style: normal; font-size: .92rem; color: var(--muted); margin-top: 14px; }
+    .cite strong { color: var(--text); font-weight: 600; }
+    details.full { margin-top: 18px; border-top: 1px solid var(--border); padding-top: 14px; }
+    details.full summary {
+      cursor: pointer; font-size: .9rem; font-weight: 600; color: var(--accent-2);
+      list-style: none; display: inline-flex; align-items: center; gap: 6px;
+    }
+    details.full summary::-webkit-details-marker { display: none; }
+    details.full summary::after { content: "+"; font-size: 1.1rem; line-height: 1; }
+    details.full[open] summary::after { content: "\2212"; }
+    details.full[open] summary .more { display: none; }
+    details.full:not([open]) summary .less { display: none; }
+    details.full .body { margin-top: 14px; color: var(--muted); font-size: .97rem; }
+    details.full .body p:last-child { margin-bottom: 0; }
+
+    /* Featured letter */
+    .letter.featured { background: linear-gradient(120deg, #b0127f, #5a16c9); color: #fff; border: 0; box-shadow: 0 0 40px rgba(255, 43, 214, .35); }
+    .letter.featured blockquote::before { color: rgba(255,255,255,.6); }
+    .letter.featured .cite, .letter.featured .cite strong { color: rgba(255,255,255,.88); }
+    .letter.featured details.full { border-color: rgba(255,255,255,.25); }
+    .letter.featured details.full summary { color: #fff; }
+    .letter.featured details.full .body { color: rgba(255,255,255,.88); }
+
+    /* Wall of short voices */
+    .voices { columns: 3 260px; column-gap: 20px; }
+    .voice {
+      break-inside: avoid; margin: 0 0 20px; padding: 26px; border-radius: var(--radius);
+      background: var(--surface); border: 1px solid var(--border); backdrop-filter: blur(12px);
+      --c: var(--neon-pink);
+    }
+    .voice blockquote { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 1.35rem; line-height: 1.3; color: var(--c); text-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+    .voice.big blockquote { font-size: clamp(1.6rem, 3vw, 2rem); }
+    .voice.calm blockquote { font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: var(--text); text-shadow: none; }
+    .voice:nth-child(4n+2) { --c: var(--neon-cyan); }
+    .voice:nth-child(4n+3) { --c: var(--neon-lime); }
+    .voice:nth-child(4n+4) { --c: #c99bff; }
+    .voice .cite { margin-top: 12px; }
+
+    /* Letters (pull-quote + full text) */
+    .letters { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+    .letter { margin: 0; padding: 28px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); backdrop-filter: blur(12px); display: flex; flex-direction: column; }
+    .letter blockquote { margin: 0; font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; flex: 1; }
+    .letter blockquote::before { content: "\201C"; display: block; font-size: 3rem; line-height: .8; color: var(--accent); margin-bottom: 6px; }
+    .letters.two { grid-template-columns: repeat(2, 1fr); align-items: start; }
+    @media (max-width: 760px) { .letters.two { grid-template-columns: 1fr; } }
+    .letter.wide { grid-column: 1 / -1; }
+    .letter.wide blockquote { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
 
     /* Gallery */
     .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 32px; }
@@ -159,11 +204,6 @@
     dialog.lightbox img { max-width: 92vw; max-height: 85vh; border-radius: 8px; }
     dialog.lightbox p { color: #eee; text-align: center; margin: 10px 0 0; font-size: .95rem; }
 
-    /* Budget / ask */
-    .ask-table { width: 100%; border-collapse: collapse; margin-top: 24px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
-    .ask-table th, .ask-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); }
-    .ask-table td:last-child, .ask-table th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
-    .ask-table tfoot td { font-weight: 600; background: var(--accent-soft); border-bottom: 0; }
 
     /* Downloads / supporting docs */
     .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
@@ -183,7 +223,7 @@
       body::before { animation: none; }
     }
     /* Cards and nav sit on frosted glass so text stays readable over the glow */
-    .fact, .quote, .ask-table, .doc { backdrop-filter: blur(12px); }
+    .fact, .doc { backdrop-filter: blur(12px); }
     @media print {
       :root { --bg: #fff; --surface: #fff; --text: #111; --muted: #444; --border: #ddd; --accent: #a0127a; }
       body::before { display: none; }
@@ -197,13 +237,14 @@
 
   <nav class="nav" aria-label="Sections">
     <div class="wrap">
-      <a class="brand" href="#top">Elephant Dreamland</a>
+      <a class="brand" href="#top"><img src="images/logo.png" alt="" class="brand-logo">Elephant Dreamland</a>
       <ul>
         <li><a class="link" href="#about">About</a></li>
         <li><a class="link" href="#video">Watch</a></li>
         <li><a class="link" href="#support">Support</a></li>
+        <li><a class="link" href="#tedx">TEDx</a></li>
         <li><a class="link" href="#impact">Impact</a></li>
-        <li><a class="link" href="#ask">The Ask</a></li>
+        <li><a class="link" href="#documents">Documents</a></li>
       </ul>
     </div>
   </nav>
@@ -211,8 +252,9 @@
   <header class="hero" id="top">
     <div class="hero-media">
       <div class="wrap">
-        <div class="eyebrow" style="color:#fff;opacity:.85">Funding application · Programme name 2026</div>
-        <h1>A short, memorable headline about the project</h1>
+        <img src="images/logo.png" alt="Elephant Dreamland logo" class="hero-logo">
+        <div class="eyebrow" style="color:#fff;opacity:.85">secret holding page</div>
+        <h1>Coming soon: Elephant Dreamland</h1>
         <p>One or two sentences that tell a reviewer exactly what you do and why it matters.</p>
       </div>
     </div>
@@ -235,7 +277,6 @@
           <div class="fact"><strong>1,200</strong><span>people reached</span></div>
           <div class="fact"><strong>5 yrs</strong><span>track record</span></div>
           <div class="fact"><strong>40+</strong><span>partners</span></div>
-          <div class="fact"><strong>£50k</strong><span>requested</span></div>
         </div>
       </div>
     </section>
@@ -243,21 +284,14 @@
     <section id="video">
       <div class="wrap">
         <div class="eyebrow">Watch</div>
-        <h2>See it in action</h2>
+        <h2>Too Hot to Handel!</h2>
         <div class="videos">
           <!-- YouTube: set data-id to the video ID (the part after v=). Thumbnail loads automatically. -->
           <figure class="video reveal" style="margin:0">
-            <button class="video-embed" data-provider="youtube" data-id="dQw4w9WgXcQ" aria-label="Play video: Project overview">
+            <button class="video-embed" data-provider="youtube" data-id="7dagUK916FA" aria-label="Play video: Too Hot to Handel!">
               <span class="play"></span>
             </button>
-            <figcaption>Project overview (2 min)</figcaption>
-          </figure>
-          <!-- Vimeo: set data-id to the numeric ID; add data-poster with an image path for the thumbnail. -->
-          <figure class="video reveal" style="margin:0">
-            <button class="video-embed" data-provider="vimeo" data-id="76979871" data-poster="images/video2-poster.jpg" aria-label="Play video: Participant stories">
-              <span class="play"></span>
-            </button>
-            <figcaption>Participant stories (3 min)</figcaption>
+            <figcaption>Too Hot to Handel! Award-winning project documentary by young filmmakers Isla and Sonny.</figcaption>
           </figure>
         </div>
       </div>
@@ -266,28 +300,142 @@
     <section id="support">
       <div class="wrap">
         <div class="eyebrow">Support</div>
-        <h2>What people are saying</h2>
-        <div class="quotes">
-          <figure class="quote featured reveal">
-            <blockquote>A standout quote from your most significant supporter goes here — this one gets the big treatment.</blockquote>
-            <figcaption>
-              <img src="images/supporter-1.jpg" alt="">
-              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
-            </figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote>Supporter quote.</blockquote>
-            <figcaption>
-              <img src="images/supporter-2.jpg" alt="">
-              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
-            </figcaption>
-          </figure>
-          <figure class="quote reveal">
-            <blockquote>Supporter quote.</blockquote>
-            <figcaption>
-              <img src="images/supporter-3.jpg" alt="">
-              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
-            </figcaption>
+        <h2>Notes of support</h2>
+
+        <!-- Featured partner -->
+        <figure class="letter wide featured reveal" style="margin-top:32px">
+          <blockquote>Eleanor’s initiative provides a much needed space for artist-led and artist-supported activity which ripple through the community.</blockquote>
+          <figcaption class="cite"><strong>Leo Burtin</strong>, Programme Director, Gosport Routes CPP</figcaption>
+          <details class="full">
+            <summary><span class="more">Read full statement</span><span class="less">Close</span></summary>
+            <div class="body">
+              <p>“Gosport Routes looks forward to collaborating with Elephant Dreamland on bringing further artistic development opportunities to the Borough. Eleanor’s initiative provides a much needed space for artist-led and artist-supported activity which ripple through the community. We also relish the opportunity to consider the joint programming opportunities which may arise from a dedicated contemporary arts space where youth engagement is central. (…)”</p>
+            </div>
+          </details>
+        </figure>
+
+        <!-- Short voices -->
+        <div class="support-group">
+          <h3>Young people &amp; families</h3>
+          <div class="voices">
+            <figure class="voice big reveal">
+              <blockquote>“I don’t know what you’re doing there but please never stop! My sickly recluse of a son is leaving his room, eating, and having a good time!”</blockquote>
+              <figcaption class="cite">Parent, Mural Project</figcaption>
+            </figure>
+            <figure class="voice reveal">
+              <blockquote>“My son says it’s the first thing he’s enjoyed for a long time”</blockquote>
+              <figcaption class="cite">Parent, DJ workshop series</figcaption>
+            </figure>
+            <figure class="voice reveal">
+              <blockquote>“I thought it would be lame but it’s really good!”</blockquote>
+              <figcaption class="cite">Young person, overheard at Project X DJ event</figcaption>
+            </figure>
+            <figure class="voice reveal">
+              <blockquote>“It’s made a big difference to me, I’m really sad to leave”</blockquote>
+              <figcaption class="cite">Young person, end of DJ workshop series</figcaption>
+            </figure>
+            <figure class="voice calm reveal">
+              <blockquote>“This project has been such a great experience for my daughter. She has been exposed to some incredible local culture that even we didn't know about. The trip to London was a particular triumph. It was her first time ever in London and also first trip without us as parents being there with her. Her confidence has blossomed massively since starting this so I thank you so much.”</blockquote>
+              <figcaption class="cite">Parent of home-educated young participant, Too Hot to Handel project</figcaption>
+            </figure>
+            <figure class="voice reveal">
+              <blockquote>“Loved it!! Amazing experience”</blockquote>
+              <figcaption class="cite">Young participant, Too Hot to Handel project</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- The need for space -->
+        <div class="support-group">
+          <h3>Why Gosport needs a space</h3>
+          <div class="letters two">
+            <figure class="letter wide reveal">
+              <blockquote>Gosport is a town of 80,000 people and yet has no theatre, cinema or resident professional theatre companies.</blockquote>
+              <figcaption class="cite"><strong>Mark Knightley</strong>, Crowded Room theatre company</figcaption>
+              <details class="full">
+                <summary><span class="more">Read full letter</span><span class="less">Close</span></summary>
+                <div class="body">
+                  <p>I am writing in support of an application to Arts Council England by Eleanor Hawkridge to enable her to run a new project space in Gosport that would benefit her artistic practice and the local community.</p>
+                  <p>I have worked with Eleanor over several projects in Gosport, most recently during a period of R&amp;D for two new shows The Mariner’s Revenge at the historic Slaughterhouse and Gulliver’s Travels at Fort Brockhurst. In my experience she is deeply embedded and respected in the local community. She understands the needs of participants and is an expert at making projects inclusive, accessible and relevant.</p>
+                  <p>Gosport is a town of 80,000 people and yet has no theatre, cinema or resident professional theatre companies. As such, artists and facilitators such as Eleanor are crucial to the burgeoning creative community that is growing there.</p>
+                  <p>My theatre company, Crowded Room, often co-create with the people of Gosport but have often found rehearsal or project space hard to come by. A new space, managed by Eleanor, would greatly increase the amount of work that we could do in the area and I have no doubt would benefit the community more widely.</p>
+                </div>
+              </details>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>I, for one, am always on the look out for rehearsal and performance spaces and often have to go to Portsmouth to find this.</blockquote>
+              <figcaption class="cite"><strong>Clare Campbell</strong>, Gosport-based playwright</figcaption>
+              <details class="full">
+                <summary><span class="more">Read full letter</span><span class="less">Close</span></summary>
+                <div class="body">
+                  <p>Eleanor’s influence on my projects for the community and for my own creative plans has been mightily impactful.</p>
+                  <p>I was fortunate to meet with Eleanor when I was a senior support worker with a local youth charity. Her positivity and drive to bring diverse and exciting projects to Gosport was genuinely inspirational, it actually motivated me to bring my own ideas to fruition and facilitate a community-led production at St John’s Arts. Without Eleanor’s vision and trust this would not have happened.</p>
+                  <p>Knowing there are people like Eleanor who have such drive and passion is inspirational and she has strengthened the creative offer here in Gosport. She brings such innovative projects and has this incredible capability to deliver it all so well.</p>
+                  <p>If Eleanor had a space where she could continue her great work, I have no doubt the impact this would have.</p>
+                  <p>I, for one, am always on the look out for rehearsal and performance spaces and often have to go to Portsmouth to find this.</p>
+                  <p>If Eleanor was able to provide a venue or space I wouldn’t hesitate to reach out and see if there was a way of working alongside her. How great it would be to stay local.</p>
+                  <p>Eleanor is incredible. It’s a blessing to know her.</p>
+                </div>
+              </details>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>Setting up a project is just really stressful, it’s so challenging trying to find spaces with availability, it’s really been a lot more difficult than I was expecting. (…)</blockquote>
+              <figcaption class="cite"><strong>Anna Wardley</strong>, Workshop leader, TEDx Speaker &amp; Churchill Fellow (voice note)</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <!-- Partners & peers -->
+        <div class="support-group">
+          <h3>Partners &amp; peers</h3>
+          <div class="letters two">
+            <figure class="letter wide reveal">
+              <blockquote>Most importantly, the project helped young people see the possibilities available to them, encouraging them to explore their talents, increase confidence in their abilities, and consider how creativity can play a role in their futures.</blockquote>
+              <figcaption class="cite"><strong>Motiv8</strong>, on Too Hot To Handel</figcaption>
+              <details class="full">
+                <summary><span class="more">Read full statement</span><span class="less">Close</span></summary>
+                <div class="body">
+                  <p>Over Spring, Motiv8 partnered with Eleanor Hawkridge from Elephant Dreamland on Too Hot To Handel, an inspiring creative project that encouraged young people to explore local cultural heritage and use it as a springboard for future creative opportunities.</p>
+                  <p>This project gave young people the chance to develop a range of valuable skills, from creativity and self-expression to confidence, communication, and collaboration. Through researching and uncovering fascinating local connections to influential artists and musicians including Handel, David Bowie, Lily Allen and family, Nat Gonella, Queen, The Stranglers, Take That and many others, participants gained a deeper understanding of the rich cultural heritage on their doorstep.</p>
+                  <p>Most importantly, the project helped young people see the possibilities available to them, encouraging them to explore their talents, increase confidence in their abilities, and consider how creativity can play a role in their futures.</p>
+                  <p>At Motiv8, we are passionate about creating opportunities that help young people develop skills, discover new interests, and realise their potential. Projects like Too Hot To Handel are a wonderful example of how creative engagement can empower young people, strengthen confidence, and inspire ambition.</p>
+                  <p>We would like to extend our sincere thanks to Eleanor Hawkridge for her passion, creativity, and dedication throughout the project.</p>
+                  <p>Congratulations to everyone involved. The creativity, enthusiasm, and talent on display made it clear that the future is incredibly bright 💙</p>
+                </div>
+              </details>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>An incredible project! Thank you to Eleanor Hawkridge for brightening the future for our young people and engaging them in the amazing way that you did 💙</blockquote>
+              <figcaption class="cite"><strong>Motiv8</strong></figcaption>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>Thanks again for delivering an exciting, informative project (…) fantastic comments from parents, partners, producers, and young people (…)</blockquote>
+              <figcaption class="cite"><strong>Charlie Fletcher</strong>, HCT</figcaption>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>Thank you for your ongoing support and the positive impact you have on our students and the wider community.</blockquote>
+              <figcaption class="cite"><strong>SHCG</strong>, South Hampshire Colleges Group</figcaption>
+            </figure>
+            <figure class="letter reveal">
+              <blockquote>The project you run is so meaningful and much needed, it's very encouraging to see the passion you have for the community. Thank you for doing the work.</blockquote>
+              <figcaption class="cite"><strong>Emmi Salonen</strong>, Studio Emmi, author of The Creative Wellbeing Handbook</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tedx">
+      <div class="wrap">
+        <div class="eyebrow">TEDxGosport</div>
+        <h2>AI Can’t Kill Dreamland</h2>
+        <p class="lede">Eleanor Hawkridge at TEDxGosport.</p>
+        <div class="videos">
+          <figure class="video reveal" style="margin:0">
+            <button class="video-embed" data-provider="youtube" data-id="ciEQ4hdXzTU" aria-label="Play video: AI Can’t Kill Dreamland, Eleanor Hawkridge, TEDxGosport">
+              <span class="play"></span>
+            </button>
+            <figcaption>AI Can’t Kill Dreamland | Eleanor Hawkridge | TEDxGosport</figcaption>
           </figure>
         </div>
       </div>
@@ -307,22 +455,10 @@
       </div>
     </section>
 
-    <section id="ask">
+    <section id="documents">
       <div class="wrap">
-        <div class="eyebrow">The ask</div>
-        <h2>What the funding will achieve</h2>
-        <p class="lede">How the money will be used and what it unlocks.</p>
-        <table class="ask-table reveal">
-          <thead><tr><th>Item</th><th>Amount</th></tr></thead>
-          <tbody>
-            <tr><td>Staffing</td><td>£30,000</td></tr>
-            <tr><td>Equipment</td><td>£12,000</td></tr>
-            <tr><td>Evaluation</td><td>£8,000</td></tr>
-          </tbody>
-          <tfoot><tr><td>Total</td><td>£50,000</td></tr></tfoot>
-        </table>
-
-        <h3 style="margin-top:56px">Supporting documents</h3>
+        <div class="eyebrow">Documents</div>
+        <h2>Supporting documents</h2>
         <div class="docs">
           <a class="doc" href="docs/letter-of-support.pdf"><strong>Letters of support</strong><span>PDF</span></a>
           <a class="doc" href="docs/annual-report.pdf"><strong>Annual report</strong><span>PDF</span></a>
@@ -347,7 +483,13 @@
     document.querySelectorAll(".video-embed").forEach(el => {
       const { provider, id, poster } = el.dataset;
       if (poster) el.style.backgroundImage = `url("${poster}")`;
-      else if (provider === "youtube") el.style.backgroundImage = `url("https://i.ytimg.com/vi/${id}/hqdefault.jpg")`;
+      else if (provider === "youtube") {
+        el.style.backgroundImage = `url("https://i.ytimg.com/vi/${id}/hqdefault.jpg")`;
+        // Upgrade to the HD thumbnail when one exists (YouTube serves a 120px placeholder otherwise)
+        const hd = new Image();
+        hd.onload = () => { if (hd.naturalWidth > 120) el.style.backgroundImage = `url("${hd.src}")`; };
+        hd.src = `https://i.ytimg.com/vi/${id}/maxresdefault.jpg`;
+      }
 
       el.addEventListener("click", () => {
         const src = provider === "vimeo"
@@ -374,6 +516,9 @@
       });
     });
     lightbox.addEventListener("click", () => lightbox.close());
+
+    // Expand all "read in full" sections when printing
+    window.addEventListener("beforeprint", () => document.querySelectorAll("details.full").forEach(d => d.open = true));
 
     // Fade-in on scroll
     const io = new IntersectionObserver(entries => {
