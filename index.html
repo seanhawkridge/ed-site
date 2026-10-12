@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Elephant Dreamland — Funding Application</title>
+  <meta name="description" content="One-sentence summary of the project for reviewers.">
+  <meta name="robots" content="noindex"> <!-- remove if you want search engines to index the page -->
+
+  <!-- Social / link preview (fill in once hosted) -->
+  <meta property="og:title" content="Elephant Dreamland">
+  <meta property="og:description" content="One-sentence summary of the project.">
+  <meta property="og:image" content="images/hero.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #faf8f5;
+      --surface: #ffffff;
+      --text: #1d1d1f;
+      --muted: #5c5c66;
+      --accent: #2f5d50;
+      --accent-soft: #e4eee9;
+      --border: #e6e2dc;
+      --radius: 14px;
+      --max: 1080px;
+      --serif: "Fraunces", Georgia, serif;
+      --sans: "Inter", system-ui, -apple-system, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font: 400 17px/1.65 var(--sans);
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: var(--accent); }
+    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0 0 .5em; }
+    h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
+    p { margin: 0 0 1em; }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+    section { padding: 80px 0; }
+    section + section { border-top: 1px solid var(--border); }
+    .eyebrow {
+      font-size: .8rem; font-weight: 600; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--accent); margin-bottom: .75em;
+    }
+    .lede { font-size: 1.2rem; color: var(--muted); max-width: 680px; }
+
+    /* Nav */
+    .nav {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--bg) 90%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+    .nav .brand { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text); white-space: nowrap; }
+    .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
+    .nav a.link { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; }
+    .nav a.link:hover, .nav a.link.active { color: var(--accent); }
+    @media (max-width: 860px) { .nav ul { gap: 14px; } .nav a.link { font-size: .85rem; } }
+    @media (max-width: 620px) { .nav ul { display: none; } }
+
+    /* Hero */
+    .hero { padding: 0; border: 0; }
+    .hero-media {
+      position: relative; min-height: 70vh; display: flex; align-items: flex-end;
+      background: #2f5d50 center/cover no-repeat;
+      background-image: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.65)), url("images/hero.jpg");
+      color: #fff;
+    }
+    .hero-media .wrap { padding-bottom: 64px; padding-top: 120px; }
+    .hero h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); max-width: 820px; }
+    .hero p { font-size: 1.25rem; max-width: 640px; opacity: .92; }
+
+    /* Key facts */
+    .facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-top: 40px; }
+    .fact { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
+    .fact strong { display: block; font-family: var(--serif); font-size: 2rem; color: var(--accent); line-height: 1.1; }
+    .fact span { color: var(--muted); font-size: .95rem; }
+
+    /* Two-column text + image */
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; }
+    .split img { border-radius: var(--radius); aspect-ratio: 4/3; object-fit: cover; width: 100%; background: var(--accent-soft); }
+    @media (max-width: 760px) { .split { grid-template-columns: 1fr; gap: 28px; } }
+
+    /* Video (click-to-load: no third-party requests until played) */
+    .videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
+    .video figcaption { color: var(--muted); font-size: .95rem; margin-top: 10px; }
+    .video-embed {
+      position: relative; aspect-ratio: 16/9; border-radius: var(--radius); overflow: hidden;
+      background: #111 center/cover no-repeat; cursor: pointer; border: 0; padding: 0; width: 100%;
+    }
+    .video-embed iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+    .video-embed .play {
+      position: absolute; inset: 0; margin: auto; width: 72px; height: 72px; border-radius: 50%;
+      background: rgba(255,255,255,.92); display: grid; place-items: center; transition: transform .2s;
+    }
+    .video-embed:hover .play, .video-embed:focus-visible .play { transform: scale(1.08); }
+    .video-embed .play::after {
+      content: ""; margin-left: 5px; border-style: solid; border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent var(--accent);
+    }
+
+    /* Quotes */
+    .quotes { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin-top: 32px; }
+    .quote { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 28px; margin: 0; display: flex; flex-direction: column; }
+    .quote blockquote { margin: 0 0 20px; font-family: var(--serif); font-size: 1.15rem; line-height: 1.5; flex: 1; }
+    .quote blockquote::before { content: "\201C"; display: block; font-size: 3rem; line-height: .8; color: var(--accent); margin-bottom: 6px; }
+    .quote figcaption { display: flex; align-items: center; gap: 12px; }
+    .quote figcaption img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; background: var(--accent-soft); }
+    .quote .name { font-weight: 600; display: block; }
+    .quote .role { color: var(--muted); font-size: .9rem; }
+    .quote.featured { grid-column: 1 / -1; background: var(--accent); color: #fff; border: 0; }
+    .quote.featured blockquote { font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+    .quote.featured blockquote::before { color: rgba(255,255,255,.6); }
+    .quote.featured .role { color: rgba(255,255,255,.8); }
+
+    /* Gallery */
+    .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 32px; }
+    .gallery button { border: 0; padding: 0; background: none; cursor: zoom-in; border-radius: 10px; overflow: hidden; }
+    .gallery img { aspect-ratio: 1; object-fit: cover; width: 100%; transition: transform .3s; background: var(--accent-soft); }
+    .gallery button:hover img { transform: scale(1.04); }
+    dialog.lightbox { border: 0; padding: 0; background: transparent; max-width: 92vw; max-height: 92vh; }
+    dialog.lightbox::backdrop { background: rgba(0,0,0,.85); }
+    dialog.lightbox img { max-width: 92vw; max-height: 85vh; border-radius: 8px; }
+    dialog.lightbox p { color: #eee; text-align: center; margin: 10px 0 0; font-size: .95rem; }
+
+    /* Budget / ask */
+    .ask-table { width: 100%; border-collapse: collapse; margin-top: 24px; background: var(--surface); border-radius: var(--radius); overflow: hidden; border: 1px solid var(--border); }
+    .ask-table th, .ask-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--border); }
+    .ask-table td:last-child, .ask-table th:last-child { text-align: right; font-variant-numeric: tabular-nums; }
+    .ask-table tfoot td { font-weight: 600; background: var(--accent-soft); border-bottom: 0; }
+
+    /* Downloads / supporting docs */
+    .docs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin-top: 28px; }
+    .doc { display: block; padding: 20px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); text-decoration: none; color: var(--text); transition: border-color .2s; }
+    .doc:hover { border-color: var(--accent); }
+    .doc strong { display: block; }
+    .doc span { color: var(--muted); font-size: .9rem; }
+
+    footer { padding: 48px 0; color: var(--muted); font-size: .92rem; border-top: 1px solid var(--border); }
+
+    /* Fade-in on scroll */
+    .reveal { opacity: 0; transform: translateY(16px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+    }
+    @media print {
+      .nav, .video-embed .play { display: none; }
+      .reveal { opacity: 1; transform: none; }
+      section { padding: 32px 0; break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="nav" aria-label="Sections">
+    <div class="wrap">
+      <a class="brand" href="#top">Elephant Dreamland</a>
+      <ul>
+        <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#video">Watch</a></li>
+        <li><a class="link" href="#support">Support</a></li>
+        <li><a class="link" href="#impact">Impact</a></li>
+        <li><a class="link" href="#ask">The Ask</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-media">
+      <div class="wrap">
+        <div class="eyebrow" style="color:#fff;opacity:.85">Funding application · Programme name 2026</div>
+        <h1>A short, memorable headline about the project</h1>
+        <p>One or two sentences that tell a reviewer exactly what you do and why it matters.</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about">
+      <div class="wrap">
+        <div class="split reveal">
+          <div>
+            <div class="eyebrow">About the project</div>
+            <h2>What we're doing</h2>
+            <p class="lede">The problem, who it affects, and your response to it.</p>
+            <p>Supporting paragraph. Keep this tight — reviewers skim.</p>
+          </div>
+          <img src="images/about.jpg" alt="Describe this image">
+        </div>
+
+        <div class="facts reveal">
+          <div class="fact"><strong>1,200</strong><span>people reached</span></div>
+          <div class="fact"><strong>5 yrs</strong><span>track record</span></div>
+          <div class="fact"><strong>40+</strong><span>partners</span></div>
+          <div class="fact"><strong>£50k</strong><span>requested</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="eyebrow">Watch</div>
+        <h2>See it in action</h2>
+        <div class="videos">
+          <!-- YouTube: set data-id to the video ID (the part after v=). Thumbnail loads automatically. -->
+          <figure class="video reveal" style="margin:0">
+            <button class="video-embed" data-provider="youtube" data-id="dQw4w9WgXcQ" aria-label="Play video: Project overview">
+              <span class="play"></span>
+            </button>
+            <figcaption>Project overview (2 min)</figcaption>
+          </figure>
+          <!-- Vimeo: set data-id to the numeric ID; add data-poster with an image path for the thumbnail. -->
+          <figure class="video reveal" style="margin:0">
+            <button class="video-embed" data-provider="vimeo" data-id="76979871" data-poster="images/video2-poster.jpg" aria-label="Play video: Participant stories">
+              <span class="play"></span>
+            </button>
+            <figcaption>Participant stories (3 min)</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="support">
+      <div class="wrap">
+        <div class="eyebrow">Support</div>
+        <h2>What people are saying</h2>
+        <div class="quotes">
+          <figure class="quote featured reveal">
+            <blockquote>A standout quote from your most significant supporter goes here — this one gets the big treatment.</blockquote>
+            <figcaption>
+              <img src="images/supporter-1.jpg" alt="">
+              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <blockquote>Supporter quote.</blockquote>
+            <figcaption>
+              <img src="images/supporter-2.jpg" alt="">
+              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
+            </figcaption>
+          </figure>
+          <figure class="quote reveal">
+            <blockquote>Supporter quote.</blockquote>
+            <figcaption>
+              <img src="images/supporter-3.jpg" alt="">
+              <div><span class="name">Supporter Name</span><span class="role">Title, Organisation</span></div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="impact">
+      <div class="wrap">
+        <div class="eyebrow">Impact</div>
+        <h2>Our work so far</h2>
+        <p class="lede">Evidence, outcomes and milestones.</p>
+        <div class="gallery reveal">
+          <button data-caption="Caption for photo 1"><img src="images/gallery-1.jpg" alt="Describe photo 1" loading="lazy"></button>
+          <button data-caption="Caption for photo 2"><img src="images/gallery-2.jpg" alt="Describe photo 2" loading="lazy"></button>
+          <button data-caption="Caption for photo 3"><img src="images/gallery-3.jpg" alt="Describe photo 3" loading="lazy"></button>
+          <button data-caption="Caption for photo 4"><img src="images/gallery-4.jpg" alt="Describe photo 4" loading="lazy"></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="ask">
+      <div class="wrap">
+        <div class="eyebrow">The ask</div>
+        <h2>What the funding will achieve</h2>
+        <p class="lede">How the money will be used and what it unlocks.</p>
+        <table class="ask-table reveal">
+          <thead><tr><th>Item</th><th>Amount</th></tr></thead>
+          <tbody>
+            <tr><td>Staffing</td><td>£30,000</td></tr>
+            <tr><td>Equipment</td><td>£12,000</td></tr>
+            <tr><td>Evaluation</td><td>£8,000</td></tr>
+          </tbody>
+          <tfoot><tr><td>Total</td><td>£50,000</td></tr></tfoot>
+        </table>
+
+        <h3 style="margin-top:56px">Supporting documents</h3>
+        <div class="docs">
+          <a class="doc" href="docs/letter-of-support.pdf"><strong>Letters of support</strong><span>PDF</span></a>
+          <a class="doc" href="docs/annual-report.pdf"><strong>Annual report</strong><span>PDF</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p><strong>Organisation Name</strong> · Registered charity no. 000000 · <a href="mailto:hello@example.org">hello@example.org</a></p>
+    </div>
+  </footer>
+
+  <dialog class="lightbox" aria-label="Image viewer">
+    <img src="" alt="">
+    <p></p>
+  </dialog>
+
+  <script>
+    // Click-to-load video embeds
+    document.querySelectorAll(".video-embed").forEach(el => {
+      const { provider, id, poster } = el.dataset;
+      if (poster) el.style.backgroundImage = `url("${poster}")`;
+      else if (provider === "youtube") el.style.backgroundImage = `url("https://i.ytimg.com/vi/${id}/hqdefault.jpg")`;
+
+      el.addEventListener("click", () => {
+        const src = provider === "vimeo"
+          ? `https://player.vimeo.com/video/${id}?autoplay=1&dnt=1`
+          : `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0`;
+        const iframe = document.createElement("iframe");
+        iframe.src = src;
+        iframe.title = el.getAttribute("aria-label") || "Video";
+        iframe.allow = "autoplay; fullscreen; picture-in-picture";
+        iframe.allowFullscreen = true;
+        el.replaceChildren(iframe);
+      }, { once: true });
+    });
+
+    // Gallery lightbox
+    const lightbox = document.querySelector(".lightbox");
+    document.querySelectorAll(".gallery button").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const img = btn.querySelector("img");
+        lightbox.querySelector("img").src = img.src;
+        lightbox.querySelector("img").alt = img.alt;
+        lightbox.querySelector("p").textContent = btn.dataset.caption || "";
+        lightbox.showModal();
+      });
+    });
+    lightbox.addEventListener("click", () => lightbox.close());
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    // Highlight current section in nav
+    const links = [...document.querySelectorAll(".nav a.link")];
+    const navIo = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) links.forEach(a => a.classList.toggle("active", a.hash === "#" + e.target.id));
+      });
+    }, { rootMargin: "-45% 0px -50% 0px" });
+    document.querySelectorAll("main section[id]").forEach(s => navIo.observe(s));
+  </script>
+</body>
+</html>
