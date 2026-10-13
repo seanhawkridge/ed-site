@@ -124,6 +124,52 @@
         #000 url("images/bg-dreamland.jpg") 70% center / cover no-repeat; }
     }
 
+    /* About Eleanor: disco ball throwing light around the room */
+    .eleanor { position: relative; overflow: hidden; isolation: isolate; padding: 200px 0 120px; background: #07040f; }
+    .eleanor::before {
+      content: ""; position: absolute; z-index: -2; left: 50%; top: 70px; width: 320vmax; height: 320vmax; margin: -160vmax 0 0 -160vmax;
+      background: repeating-conic-gradient(from 0deg,
+        rgba(255, 43, 214, .22) 0deg 3deg, transparent 3deg 15deg,
+        rgba(0, 234, 255, .18) 15deg 18deg, transparent 18deg 30deg,
+        rgba(182, 255, 59, .16) 30deg 33deg, transparent 33deg 45deg,
+        rgba(201, 155, 255, .2) 45deg 48deg, transparent 48deg 60deg);
+      filter: blur(3px); animation: disco-spin 90s linear infinite;
+    }
+    .eleanor::after {
+      content: ""; position: absolute; z-index: -1; inset: 0; pointer-events: none;
+      background:
+        radial-gradient(circle, rgba(255,255,255,.95) 0 1.5px, transparent 3px) 0 0 / 97px 83px,
+        radial-gradient(circle, rgba(255, 43, 214, .9) 0 2px, transparent 4px) 30px 50px / 151px 127px,
+        radial-gradient(circle, rgba(0, 234, 255, .9) 0 2px, transparent 4px) 80px 10px / 173px 139px,
+        radial-gradient(circle, rgba(182, 255, 59, .85) 0 1.5px, transparent 3.5px) 120px 90px / 211px 163px;
+      opacity: .55; mix-blend-mode: screen; animation: disco-sparkle 40s linear infinite;
+      -webkit-mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 85%); mask-image: radial-gradient(ellipse at 50% 0%, #000 30%, transparent 85%);
+    }
+    @keyframes disco-spin { to { transform: rotate(360deg); } }
+    @keyframes disco-sparkle { to { background-position: 970px 415px, 1240px 685px, 945px 705px, 1386px 905px; } }
+    .disco { position: absolute; top: 0; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; }
+    .disco-string { width: 2px; height: 34px; background: linear-gradient(#555, #aaa); }
+    .disco-ball {
+      width: 72px; height: 72px; border-radius: 50%;
+      background:
+        repeating-linear-gradient(90deg, rgba(0,0,0,.35) 0 1px, transparent 1px 8px),
+        repeating-linear-gradient(0deg, rgba(0,0,0,.35) 0 1px, transparent 1px 8px),
+        radial-gradient(circle at 35% 30%, #fff 0 6%, #d9d4ea 14%, #8a85a3 48%, #3c3852 78%, #1d1a2b 100%);
+      box-shadow: 0 0 40px rgba(255,255,255,.35), 0 0 90px rgba(255, 43, 214, .35);
+      animation: disco-ball 6s linear infinite;
+    }
+    @keyframes disco-ball { to { background-position: 64px 0, 0 0, 0 0; } }
+    .eleanor-panel {
+      max-width: 820px; margin: 0 auto; padding: clamp(26px, 5vw, 48px); border-radius: var(--radius);
+      background: rgba(10, 6, 20, .74); backdrop-filter: blur(10px); border: 1px solid var(--border);
+      box-shadow: 0 0 60px rgba(138, 43, 255, .25);
+    }
+    .eleanor-panel h2 { font-size: clamp(2rem, 4.5vw, 3rem); }
+    .eleanor-panel p { font-size: 1.08rem; color: #e6def9; }
+    .eleanor-panel p:last-child { margin-bottom: 0; }
+    @media (prefers-reduced-motion: reduce) { .eleanor::before, .eleanor::after, .disco-ball { animation: none; } }
+    @media print { .eleanor::before, .eleanor::after, .disco { display: none; } .eleanor { background: #fff; padding: 32px 0; } }
+
     /* Hero */
     .hero { padding: 0; border: 0; }
     .hero-media {
@@ -664,6 +710,17 @@
         <h3 class="docs-heading">Project documents</h3>
         <div class="docs">
           <button type="button" class="doc timeline-open"><strong>Project timeline</strong><span>January 2027 – April 2028 · View timeline →</span></button>
+        </div>
+      </div>
+    </section>
+
+    <section id="eleanor" class="eleanor">
+      <div class="disco" aria-hidden="true"><span class="disco-string"></span><span class="disco-ball"></span></div>
+      <div class="wrap">
+        <div class="eleanor-panel reveal">
+          <h2>About Eleanor</h2>
+          <p>Eleanor Hawkridge is a curator, artist and community arts leader with more than 20 years’ experience of making brilliant, joyful things happen in overlooked places. In 2006 she co-founded The Royal Standard, an artist-led gallery, studios and social workspace set up by four graduates in one of Liverpool’s most deprived neighbourhoods. It has since grown into a busy home for artists, working with more than 300 of them and partnering with Liverpool Biennial.</p>
+          <p>Since then Eleanor has run a creative agency and gallery in Marrakech, produced Journeys Festival International in Portsmouth, and led Saint John’s Arts in Gosport, where her programme created over 12,000 community and youth arts engagements and secured £100K of funding. A TEDx speaker and Arts Council England grant recipient, she now brings that energy to Elephant Dreamland: a space for Gosport to make, share and celebrate art together, right in the heart of the town.</p>
         </div>
       </div>
     </section>
