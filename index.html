@@ -271,6 +271,13 @@
     .doc strong { display: block; }
     .doc span { color: var(--muted); font-size: .9rem; }
     .doc.pending { opacity: .6; }
+    .docs-note {
+      margin: 8px 0 8px; padding: 18px 22px; max-width: 760px; border-radius: var(--radius);
+      font-size: 1.1rem; line-height: 1.5; color: var(--text);
+      background: color-mix(in srgb, var(--neon-cyan) 10%, transparent);
+      border: 1px solid color-mix(in srgb, var(--neon-cyan) 55%, transparent); border-left-width: 4px;
+    }
+    .docs-note strong { color: var(--neon-cyan); }
     .docs-heading { font-size: clamp(1.3rem, 2.4vw, 1.6rem); margin: 40px 0 16px; }
     .letter-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--border); }
     .letter-list li { border-bottom: 1px solid var(--border); display: flex; align-items: baseline; gap: 20px; }
@@ -341,10 +348,10 @@
       <a class="brand" href="#top"><img src="images/logo.png" alt="" class="brand-logo">Elephant Dreamland</a>
       <ul>
         <li><a class="link" href="#support">Support</a></li>
-        <li><a class="link" href="#documents">Documents</a></li>
         <li><a class="link" href="#impact">Impact so far</a></li>
         <li><a class="link" href="#video">A previous project</a></li>
         <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#documents">Documents</a></li>
       </ul>
     </div>
   </nav>
@@ -430,7 +437,7 @@
           <h3>Why Gosport needs a space</h3>
           <div class="letters two">
             <figure id="letter-crowded-room" class="letter wide reveal">
-              <blockquote>Gosport is a town of 80,000 people and yet has no theatre, cinema or resident professional theatre companies.</blockquote>
+              <blockquote>A new space, managed by Eleanor, would greatly increase the amount of work that we could do in the area and I have no doubt would benefit the community more widely.</blockquote>
               <figcaption class="cite"><strong>Mark Knightley</strong>, Crowded Room theatre company</figcaption>
               <details class="full">
                 <summary><span class="more">Read full letter</span><span class="less">Close</span></summary>
@@ -505,28 +512,6 @@
       </div>
     </section>
 
-    <section id="documents">
-      <div class="wrap">
-        <div class="eyebrow">Documents</div>
-        <h2>Supporting documents</h2>
-        <h3 class="docs-heading">Letters of support</h3>
-        <ul class="letter-list">
-          <li><button type="button" data-letter="letter-gosport-routes"><strong>Leo Burtin</strong><span>Programme Director, Gosport Routes CPP</span></button></li>
-          <li><button type="button" data-letter="letter-crowded-room"><strong>Mark Knightley</strong><span>Crowded Room theatre company</span></button></li>
-          <li><button type="button" data-letter="letter-clare-campbell"><strong>Clare Campbell</strong><span>Gosport-based playwright</span></button></li>
-          <li><button type="button" data-letter="letter-motiv8"><strong>Motiv8</strong><span>On Too Hot To Handel</span></button></li>
-          <li><button type="button" data-letter="letter-hct"><strong>Laura Bullivant</strong><span>Cultural Development Manager, Hampshire Cultural Trust</span></button></li>
-          <li><button type="button" data-letter="letter-sean-hawkridge"><strong>Sean Hawkridge</strong><span>Web Designer</span></button></li>
-        </ul>
-
-        <h3 class="docs-heading">Project documents</h3>
-        <div class="docs">
-          <!-- When the timeline is ready: save it as docs/project-timeline.pdf, change this <div> to <a class="doc" href="docs/project-timeline.pdf"> and the label to "PDF" -->
-          <div class="doc pending"><strong>Project timeline</strong><span>Coming soon</span></div>
-        </div>
-      </div>
-    </section>
-
     <section id="impact" class="bg-photo" style="--photo: url('images/bg-foil.jpg')">
       <div class="wrap">
         <h2>Impact so far</h2>
@@ -594,7 +579,6 @@
           <h2>Inspiration</h2>
           <blockquote>
             <p>Inspired by Dreamland Margate, an unapologetically fun seaside venue at the heart of the town’s cultural revival — and the other Dreamland, brought to life through Lewis Carroll’s playfully subversive imagination. A belief in creativity’s power to transform places and open up new worlds.</p>
-            <p>Inspired by Dreamland’s impact on Margate’s regeneration, a seaside town turned around by an influx of creativity, led by a dusty retro music venue with a sense of fun…And another Dreamland, created by Lewis Carroll, making sense of the world through disruptive creativity.</p>
           </blockquote>
         </div>
       </div>
@@ -612,6 +596,29 @@
             </button>
             <figcaption>AI Can’t Kill Dreamland | Eleanor Hawkridge | TEDxGosport</figcaption>
           </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="documents">
+      <div class="wrap">
+        <div class="eyebrow">Documents</div>
+        <h2>Supporting documents</h2>
+        <p class="docs-note"><strong>Please note:</strong> full letters of support, including committed amounts, are included in the application appendix.</p>
+        <h3 class="docs-heading">Letters of support</h3>
+        <ul class="letter-list">
+          <li><button type="button" data-letter="letter-gosport-routes"><strong>Leo Burtin</strong><span>Programme Director, Gosport Routes CPP</span></button></li>
+          <li><button type="button" data-letter="letter-crowded-room"><strong>Mark Knightley</strong><span>Crowded Room theatre company</span></button></li>
+          <li><button type="button" data-letter="letter-clare-campbell"><strong>Clare Campbell</strong><span>Gosport-based playwright</span></button></li>
+          <li><button type="button" data-letter="letter-motiv8"><strong>Motiv8</strong><span>On Too Hot To Handel</span></button></li>
+          <li><button type="button" data-letter="letter-hct"><strong>Laura Bullivant</strong><span>Cultural Development Manager, Hampshire Cultural Trust</span></button></li>
+          <li><button type="button" data-letter="letter-sean-hawkridge"><strong>Sean Hawkridge</strong><span>Web Designer</span></button></li>
+        </ul>
+
+        <h3 class="docs-heading">Project documents</h3>
+        <div class="docs">
+          <!-- When the timeline is ready: save it as docs/project-timeline.pdf, change this <div> to <a class="doc" href="docs/project-timeline.pdf"> and the label to "PDF" -->
+          <div class="doc pending"><strong>Project timeline</strong><span>Coming soon</span></div>
         </div>
       </div>
     </section>
