@@ -311,6 +311,52 @@
     .letter-modal .letter-body ul { margin: 0 0 1em; padding-left: 1.2em; }
     .letter-modal .letter-body li { margin-bottom: .4em; }
 
+    /* Project timeline */
+    button.doc { width: 100%; font: inherit; text-align: left; cursor: pointer; }
+    .timeline-open { border-color: color-mix(in srgb, var(--neon-cyan) 45%, transparent); }
+    .timeline-open span { color: var(--accent-2) !important; font-weight: 600; }
+    dialog.timeline-modal { width: min(1120px, calc(100vw - 32px)); overflow: hidden; }
+    dialog.timeline-modal[open] { display: flex; flex-direction: column; }
+    .timeline-modal .tl-header { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 24px clamp(22px, 5vw, 44px) 16px; border-bottom: 1px solid var(--border); }
+    .timeline-modal .tl-header .from { margin: 0; }
+    .timeline-modal .close { position: static; float: none; margin: 0; flex: none; }
+    .timeline-modal .modal-inner { overflow-y: auto; padding-top: 20px; }
+    .tl-legend { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .9rem; color: var(--muted); }
+    .tl-legend li { display: inline-flex; align-items: center; gap: 8px; }
+    .tl-legend li::before { content: ""; width: 22px; height: 8px; border-radius: 4px; background: var(--c); box-shadow: 0 0 10px var(--c); }
+    .tl { --months: 16; display: grid; grid-template-columns: minmax(220px, 34%) 1fr; column-gap: 20px; }
+    .tl-head { display: contents; }
+    .tl-scale { position: sticky; top: 0; z-index: 1; background: #140c26; padding: 6px 0 8px; border-bottom: 1px solid var(--border); }
+    .tl-years, .tl-months { display: grid; grid-template-columns: repeat(var(--months), 1fr); font-size: .72rem; color: var(--muted); }
+    .tl-years span { font-family: var(--display); font-weight: 700; font-size: .85rem; color: var(--text); }
+    .tl-years span:nth-child(1) { grid-column: 1 / 13; }
+    .tl-years span:nth-child(2) { grid-column: 13 / 17; border-left: 1px solid var(--border); padding-left: 4px; }
+    .tl-months span { text-align: center; }
+    .tl-group { grid-column: 1 / -1; margin: 22px 0 6px; font-family: var(--display); font-weight: 700; font-size: 1rem; color: var(--c); text-shadow: 0 0 12px color-mix(in srgb, var(--c) 50%, transparent); }
+    .tl-label { padding: 10px 0; border-top: 1px solid var(--border); font-size: .92rem; line-height: 1.35; }
+    .tl-label strong { display: block; font-weight: 600; color: var(--text); }
+    .tl-label .lead { display: block; color: var(--muted); font-size: .82rem; margin-top: 2px; }
+    .tl-label .dates { display: block; color: var(--c); font-size: .78rem; margin-top: 4px; font-variant-numeric: tabular-nums; }
+    .tl-track {
+      position: relative; border-top: 1px solid var(--border); min-height: 44px;
+      background-image: linear-gradient(to right, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: calc(100% / var(--months)) 100%;
+    }
+    .tl-track::after { content: ""; position: absolute; top: 0; bottom: 0; left: calc(100% * 12 / 16); border-left: 1px dashed rgba(255,255,255,.22); }
+    .tl-bar {
+      position: absolute; top: 50%; height: 12px; margin-top: -6px; border-radius: 6px;
+      background: var(--c); box-shadow: 0 0 12px color-mix(in srgb, var(--c) 70%, transparent), 0 0 2px var(--c);
+      transform-origin: left center; animation: tl-grow .7s cubic-bezier(.2,.8,.2,1) both; animation-delay: calc(var(--i) * 25ms);
+    }
+    @keyframes tl-grow { from { transform: scaleX(0); opacity: 0; } to { transform: scaleX(1); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .tl-bar { animation: none; } }
+    @media (max-width: 680px) {
+      .tl { grid-template-columns: 1fr; }
+      .tl-head > div:first-child { display: none; }
+      .tl-label { padding-bottom: 6px; }
+      .tl-track { border-top: 0; min-height: 26px; margin-bottom: 6px; }
+    }
+
     footer { padding: 48px 0; color: var(--muted); font-size: .92rem; border-top: 1px solid var(--border); }
     .social { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px; }
     .social a {
@@ -617,8 +663,7 @@
 
         <h3 class="docs-heading">Project documents</h3>
         <div class="docs">
-          <!-- When the timeline is ready: save it as docs/project-timeline.pdf, change this <div> to <a class="doc" href="docs/project-timeline.pdf"> and the label to "PDF" -->
-          <div class="doc pending"><strong>Project timeline</strong><span>Coming soon</span></div>
+          <button type="button" class="doc timeline-open"><strong>Project timeline</strong><span>January 2027 – April 2028 · View timeline →</span></button>
         </div>
       </div>
     </section>
@@ -657,6 +702,25 @@
     <p>I am delighted to support this initiative and look forward to helping Elephant Dreamland build a lasting cultural presence in Gosport.</p>
     <p>Sean Hawkridge</p>
   </template>
+
+  <dialog class="letter-modal timeline-modal" aria-labelledby="timeline-title">
+    <div class="tl-header">
+      <div>
+        <h3 id="timeline-title">Project timeline</h3>
+        <p class="from">January 2027 – April 2028</p>
+      </div>
+      <button type="button" class="close" aria-label="Close timeline">&times;</button>
+    </div>
+    <div class="modal-inner">
+      <ul class="tl-legend" aria-label="Strands">
+        <li style="--c: var(--neon-pink)">Venue &amp; setup</li>
+        <li style="--c: #c99bff">Organisation &amp; development</li>
+        <li style="--c: var(--neon-cyan)">Residencies &amp; exhibitions</li>
+        <li style="--c: var(--neon-lime)">Participation &amp; events</li>
+      </ul>
+      <div class="tl" role="table" aria-label="Project timeline"></div>
+    </div>
+  </dialog>
 
   <dialog class="letter-modal" aria-labelledby="letter-modal-title">
     <button type="button" class="close" aria-label="Close letter">&times;</button>
@@ -729,6 +793,265 @@
       }, { threshold: 0.4 });
       counters.forEach(el => { el.textContent = "0"; countIo.observe(el); });
     }
+
+    // Project timeline: Gantt chart in a modal, built on first open
+    const TIMELINE = [
+      [
+      "20/01/2027",
+      "31/03/2027",
+      "Secure Venue",
+      "Eleanor Hawkridge",
+      "venue"
+      ],
+      [
+      "01/02/2027",
+      "31/03/2027",
+      "Fit out Venue",
+      "Eleanor Hawkridge",
+      "venue"
+      ],
+      [
+      "01/02/2027",
+      "31/03/2027",
+      "Venue Launch",
+      "Eleanor Hawkridge",
+      "venue"
+      ],
+      [
+      "20/01/2027",
+      "31/03/2027",
+      "Safety, Compliance, Fire Safety, Public Liability Insurance, First aid training, Risk assessments, Policies and procedures in place",
+      "Eleanor Hawkridge",
+      "venue"
+      ],
+      [
+      "20/01/2027",
+      "30/04/2027",
+      "Website- briefing, design, build, launch",
+      "Eleanor Hawkridge working with Web Designer",
+      "venue"
+      ],
+      [
+      "20/01/2027",
+      "31/03/2027",
+      "Engage Accountant",
+      "Eleanor Hawkridge working with Compass Accountants",
+      "venue"
+      ],
+      [
+      "20/01/2027",
+      "19/04/2028",
+      "Engage Mentoring - sessions running throughout project",
+      "Eleanor Hawkridge mentored by 3 mentors with differing expertise",
+      "org"
+      ],
+      [
+      "01/02/2027",
+      "31/01/2028",
+      "Hires of space",
+      "Eleanor Hawkridge",
+      "venue"
+      ],
+      [
+      "01/03/2027",
+      "31/03/2028",
+      "Engage Marketing support, collaborate on promotion and audience development",
+      "Eleanor Hawkridge with professional marketeer/social media specialist",
+      "org"
+      ],
+      [
+      "01/01/2028",
+      "19/04/2028",
+      "Organisational governance review, action plan generated",
+      "Eleanor Hawkridge supported by Hampshire Cultural Trust and Mentors",
+      "org"
+      ],
+      [
+      "20/01/2027",
+      "31/03/2027",
+      "Tabitha Biggs Photography Micro-residency 1, weekend workshop & exhibition launch",
+      "Eleanor Hawkridge with Tabitha Biggs",
+      "res"
+      ],
+      [
+      "01/04/2027",
+      "31/05/2027",
+      "Micro-residency 2, Mark Parry",
+      "Eleanor Hawkridge commissioning Mark Parry",
+      "res"
+      ],
+      [
+      "01/06/2027",
+      "31/07/2027",
+      "Micro-residency 3",
+      "Eleanor Hawkridge commissioning artist TBC in conversation with community",
+      "res"
+      ],
+      [
+      "01/08/2027",
+      "30/09/2027",
+      "Micro-residency 4",
+      "Eleanor Hawkridge commissioning artist TBC in conversation with community",
+      "res"
+      ],
+      [
+      "01/10/2027",
+      "30/11/2027",
+      "Micro-residency 5",
+      "Eleanor Hawkridge commissioning artist TBC/in conversation with community",
+      "res"
+      ],
+      [
+      "01/12/2027",
+      "31/01/2028",
+      "Micro-residency 6",
+      "Eleanor Hawkridge commissioning artist TBC/in conversation with community",
+      "res"
+      ],
+      [
+      "01/02/2027",
+      "29/02/2028",
+      "Window exhibitions/publicly sited artwork",
+      "Eleanor Hawkridge with visiting artists from residency programme/local artists/young creators",
+      "res"
+      ],
+      [
+      "20/01/2027",
+      "30/06/2027",
+      "Work experience for film-making students - project documentary TBC",
+      "Eleanor Hawkridge with Michele Mooney, South Hampshire Colleges Group",
+      "events"
+      ],
+      [
+      "01/04/2027",
+      "31/07/2027",
+      "DJ series - young people",
+      "Eleanor Hawkridge with Jonny Payne",
+      "events"
+      ],
+      [
+      "01/07/2027",
+      "31/08/2027",
+      "DJ series - adults",
+      "Eleanor Hawkridge with Jonny Payne",
+      "events"
+      ],
+      [
+      "01/03/2027",
+      "31/01/2028",
+      "Mini gigs programme",
+      "Eleanor Hawkridge with Stu Lovibond and young musicians",
+      "events"
+      ],
+      [
+      "01/02/2027",
+      "31/01/2028",
+      "Creative Wellbeing sessions - young people",
+      "Eleanor Hawkridge",
+      "events"
+      ],
+      [
+      "01/02/2027",
+      "31/01/2028",
+      "Creative Wellbeing sessions - adults",
+      "Eleanor Hawkridge",
+      "events"
+      ],
+      [
+      "20/01/2027",
+      "30/06/2027",
+      "Youth Consortium activity",
+      "Eleanor Hawkridge working with Gosport Routes Pilots",
+      "events"
+      ],
+      [
+      "01/05/2027",
+      "30/11/2027",
+      "Offline events",
+      "Eleanor Hawkridge with local creative community & young creatives",
+      "events"
+      ],
+      [
+      "01/06/2027",
+      "31/01/2028",
+      "R&D for co-created artwork",
+      "Eleanor Hawkridge",
+      "res"
+      ],
+      [
+      "20/01/2027",
+      "19/04/2028",
+      "Artists' networking events (Culture Connects)",
+      "Eleanor Hawkridge working with Laura Bullivant, Hampshire Cultural Trust",
+      "org"
+      ],
+      [
+      "01/05/2027",
+      "30/09/2027",
+      "Artists' long Weekend retreat event - large group residency",
+      "Eleanor Hawkridge with artist community & young people hosting",
+      "res"
+      ],
+      [
+      "01/03/2027",
+      "31/01/2028",
+      "Community Meals, hosting conversation around exhibitions",
+      "Eleanor Hawkridge with Sean Hawkridge (chef and facilitator)",
+      "events"
+      ],
+      [
+      "01/10/2027",
+      "31/03/2028",
+      "Work in progress events - local artists",
+      "Eleanor Hawkridge with local artist hosts",
+      "res"
+      ],
+      [
+      "21/10/2027",
+      "23/01/2028",
+      "Turner Prize visit, St Ives",
+      "Eleanor Hawkridge",
+      "events"
+      ]
+      ];
+    const STRANDS = [
+      ["venue", "Venue & setup", "var(--neon-pink)"],
+      ["org", "Organisation & development", "#c99bff"],
+      ["res", "Residencies & exhibitions", "var(--neon-cyan)"],
+      ["events", "Participation & events", "var(--neon-lime)"]
+    ];
+    const tlModal = document.querySelector(".timeline-modal");
+    const tlStart = Date.UTC(2027, 0, 1), tlEnd = Date.UTC(2028, 4, 1);
+    const parseDate = d => { const [dd, mm, yy] = d.split("/").map(Number); return Date.UTC(yy, mm - 1, dd); };
+    const niceDate = t => new Date(t).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+    const el = (tag, cls, text) => { const n = document.createElement(tag); if (cls) n.className = cls; if (text) n.textContent = text; return n; };
+    function buildTimeline() {
+      const tl = tlModal.querySelector(".tl");
+      const head = el("div", "tl-head"), scale = el("div", "tl-scale");
+      const years = el("div", "tl-years"); years.append(el("span", "", "2027"), el("span", "", "2028"));
+      const months = el("div", "tl-months");
+      "JFMAMJJASONDJFMA".split("").forEach(m => months.append(el("span", "", m)));
+      scale.append(years, months); head.append(el("div"), scale); tl.append(head);
+      let i = 0;
+      STRANDS.forEach(([key, name, colour]) => {
+        const g = el("div", "tl-group", name); g.style.setProperty("--c", colour); tl.append(g);
+        TIMELINE.filter(r => r[4] === key).sort((a, b) => parseDate(a[0]) - parseDate(b[0])).forEach(([start, end, task, lead]) => {
+          const s = parseDate(start), e = parseDate(end) + 864e5;
+          const label = el("div", "tl-label"); label.style.setProperty("--c", colour);
+          label.append(el("strong", "", task), el("span", "lead", lead), el("span", "dates", niceDate(s) + " – " + niceDate(e - 864e5)));
+          const track = el("div", "tl-track"), bar = el("div", "tl-bar");
+          bar.style.cssText = `--c:${colour};--i:${i++};left:${(s - tlStart) / (tlEnd - tlStart) * 100}%;width:${(e - s) / (tlEnd - tlStart) * 100}%`;
+          bar.title = task + ": " + niceDate(s) + " – " + niceDate(e - 864e5);
+          track.append(bar); tl.append(label, track);
+        });
+      });
+    }
+    document.querySelector(".timeline-open").addEventListener("click", () => {
+      if (!tlModal.querySelector(".tl").children.length) buildTimeline();
+      tlModal.showModal(); tlModal.querySelector(".modal-inner").scrollTop = 0;
+    });
+    tlModal.querySelector(".close").addEventListener("click", () => tlModal.close());
+    tlModal.addEventListener("click", e => { if (e.target === tlModal) tlModal.close(); });
 
     // Expand all "read in full" sections when printing
     window.addEventListener("beforeprint", () => {
