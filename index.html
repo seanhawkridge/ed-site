@@ -218,6 +218,7 @@
     /* Featured letter */
     .letter.featured { background: linear-gradient(120deg, #b0127f, #5a16c9); color: #fff; border: 0; box-shadow: 0 0 40px rgba(255, 43, 214, .35); }
     .letter.featured blockquote::before { color: rgba(255,255,255,.6); }
+    .letter.featured.alt { background: linear-gradient(120deg, #4a1bb8, #0b6f8f); box-shadow: 0 0 40px rgba(0, 234, 255, .3); }
     .letter.featured .cite, .letter.featured .cite strong { color: rgba(255,255,255,.88); }
     .letter.featured details.full { border-color: rgba(255,255,255,.25); }
     .letter.featured details.full summary { color: #fff; }
@@ -261,15 +262,6 @@
     .letter.wide blockquote { font-size: clamp(1.35rem, 2.6vw, 1.75rem); }
 
     /* Gallery */
-    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 32px; }
-    @media (max-width: 900px) { .cards { grid-template-columns: repeat(2, 1fr); } }
-    @media (max-width: 560px) { .cards { grid-template-columns: 1fr; } }
-    .card { margin: 0; border-radius: var(--radius); overflow: hidden; background: var(--surface); border: 1px solid var(--border); backdrop-filter: blur(12px); }
-    .card img {
-      width: 100%; aspect-ratio: 4/3; object-fit: cover;
-      background: linear-gradient(135deg, color-mix(in srgb, var(--neon-pink) 35%, transparent), color-mix(in srgb, var(--neon-violet) 35%, transparent), color-mix(in srgb, var(--neon-cyan) 30%, transparent));
-    }
-    .card h3 { font-size: 1.2rem; margin: 0; padding: 18px 20px 20px; }
 
 
     /* Downloads / supporting docs */
@@ -348,11 +340,11 @@
     <div class="wrap">
       <a class="brand" href="#top"><img src="images/logo.png" alt="" class="brand-logo">Elephant Dreamland</a>
       <ul>
-        <li><a class="link" href="#about">About</a></li>
         <li><a class="link" href="#support">Support</a></li>
         <li><a class="link" href="#documents">Documents</a></li>
+        <li><a class="link" href="#impact">Impact so far</a></li>
         <li><a class="link" href="#video">A previous project</a></li>
-        <li><a class="link" href="#projects">Future projects</a></li>
+        <li><a class="link" href="#about">About</a></li>
       </ul>
     </div>
   </nav>
@@ -370,47 +362,6 @@
   </header>
 
   <main>
-    <section id="about" class="bg-photo" style="--photo: url('images/bg-mirrorball.jpg')">
-      <div class="wrap">
-        <div class="split programme reveal">
-          <div>
-            <div class="eyebrow">About the project</div>
-            <h2>What we're doing</h2>
-            <p class="lede programme-lead">A new programme of activity for 2027&#8209;2028!</p>
-          </div>
-          <div class="programme-groups">
-            <p class="group-label">Regular micro-residencies and exhibitions exploring</p>
-            <ul class="tags">
-              <li>Social documentary photography</li>
-              <li>Sound recordings</li>
-              <li>Light installations</li>
-              <li>Zines</li>
-              <li>Collage</li>
-              <li>Painting</li>
-              <li>Performance art</li>
-            </ul>
-            <p class="group-label">Plus</p>
-            <ul class="tags alt">
-              <li>Participatory DJ-ing</li>
-              <li>Creative health &amp; wellbeing sessions</li>
-              <li>Mini gigs</li>
-              <li>Discussions at dinner</li>
-              <li>‘Make parties’</li>
-              <li>And more</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="facts reveal">
-          <div class="fact lead"><strong data-count="8786960">8,786,960</strong><span>people reached</span></div>
-          <div class="fact"><strong data-count="12963">12,963</strong><span>audience members in person</span></div>
-          <div class="fact"><strong data-count="2419">2,419</strong><span>participations in creative activity</span></div>
-          <div class="fact"><strong data-count="304">304</strong><span>performances by young people</span></div>
-          <div class="fact"><strong><span data-count="5">5</span> yrs</strong><span>track record</span></div>
-        </div>
-      </div>
-    </section>
-
     <section id="support">
       <div class="wrap">
         <div class="eyebrow">Support</div>
@@ -424,6 +375,21 @@
             <summary><span class="more">Read full statement</span><span class="less">Close</span></summary>
             <div class="body">
               <p>“Gosport Routes looks forward to collaborating with Elephant Dreamland on bringing further artistic development opportunities to the Borough. Eleanor’s initiative provides a much needed space for artist-led and artist-supported activity which ripple through the community. We also relish the opportunity to consider the joint programming opportunities which may arise from a dedicated contemporary arts space where youth engagement is central. (…)”</p>
+            </div>
+          </details>
+        </figure>
+
+        <figure id="letter-hct" class="letter wide featured alt reveal" style="margin-top:24px">
+          <blockquote>The project also contributes to our commitment to place-based cultural development by strengthening Gosport's cultural infrastructure, fostering local creative networks, attracting artists to work in the area, and helping to build a sustainable and visible cultural offer for the borough.</blockquote>
+          <figcaption class="cite"><strong>Laura Bullivant</strong>, Cultural Development Manager, Hampshire Cultural Trust</figcaption>
+          <details class="full">
+            <summary><span class="more">Read full letter</span><span class="less">Close</span></summary>
+            <div class="body">
+              <p>Hampshire Cultural Trust is pleased to support Elephant Dreamland's project to establish a dedicated contemporary arts, studio and exhibition space in Gosport, creating opportunities for artists, young people and local communities to engage in creative exchange and cultural activity.</p>
+              <p>(…)</p>
+              <p>This project aligns strongly with Hampshire Cultural Trust's objectives as an Arts Council England National Portfolio Organisation. Through our Cultural Development programme, we work to increase participation in arts and culture, particularly in priority places including Gosport, by creating opportunities for people to engage with high-quality creative experiences and develop their own creative practice. The proposed programme will support increased cultural participation amongst local residents and young people, while bringing artists into dialogue with communities through meaningful exchange and collaboration.</p>
+              <p>The project also contributes to our commitment to place-based cultural development by strengthening Gosport's cultural infrastructure, fostering local creative networks, attracting artists to work in the area, and helping to build a sustainable and visible cultural offer for the borough.</p>
+              <p>We are delighted to support this exciting initiative.</p>
             </div>
           </details>
         </figure>
@@ -561,6 +527,19 @@
       </div>
     </section>
 
+    <section id="impact" class="bg-photo" style="--photo: url('images/bg-foil.jpg')">
+      <div class="wrap">
+        <h2>Impact so far</h2>
+        <div class="facts reveal" style="margin-top:32px">
+          <div class="fact lead"><strong data-count="8786960">8,786,960</strong><span>people reached</span></div>
+          <div class="fact"><strong data-count="12963">12,963</strong><span>audience members in person</span></div>
+          <div class="fact"><strong data-count="2419">2,419</strong><span>participations in creative activity</span></div>
+          <div class="fact"><strong data-count="304">304</strong><span>performances by young people</span></div>
+          <div class="fact"><strong><span data-count="5">5</span> yrs</strong><span>track record</span></div>
+        </div>
+      </div>
+    </section>
+
     <section id="video">
       <div class="wrap">
         <div class="eyebrow">A previous project</div>
@@ -577,35 +556,34 @@
       </div>
     </section>
 
-    <section id="projects" class="bg-photo" style="--photo: url('images/bg-foil.jpg')">
+    <section id="about" class="bg-photo" style="--photo: url('images/bg-mirrorball.jpg')">
       <div class="wrap">
-        <div class="eyebrow">Future projects</div>
-        <h2>Micro Residencies</h2>
-        <div class="cards">
-          <article class="card reveal">
-            <img src="images/residency-1.jpg" alt="" loading="lazy">
-            <h3>Residency title 1</h3>
-          </article>
-          <article class="card reveal">
-            <img src="images/residency-2.jpg" alt="" loading="lazy">
-            <h3>Residency title 2</h3>
-          </article>
-          <article class="card reveal">
-            <img src="images/residency-3.jpg" alt="" loading="lazy">
-            <h3>Residency title 3</h3>
-          </article>
-          <article class="card reveal">
-            <img src="images/residency-4.jpg" alt="" loading="lazy">
-            <h3>Residency title 4</h3>
-          </article>
-          <article class="card reveal">
-            <img src="images/residency-5.jpg" alt="" loading="lazy">
-            <h3>Residency title 5</h3>
-          </article>
-          <article class="card reveal">
-            <img src="images/residency-6.jpg" alt="" loading="lazy">
-            <h3>Residency title 6</h3>
-          </article>
+        <div class="split programme reveal">
+          <div>
+            <div class="eyebrow">About the project</div>
+            <p class="lede programme-lead">A new programme of activity for 2027&#8209;2028!</p>
+          </div>
+          <div class="programme-groups">
+            <p class="group-label">Regular micro-residencies and exhibitions exploring</p>
+            <ul class="tags">
+              <li>Social documentary photography</li>
+              <li>Sound recordings</li>
+              <li>Light installations</li>
+              <li>Zines</li>
+              <li>Collage</li>
+              <li>Painting</li>
+              <li>Performance art</li>
+            </ul>
+            <p class="group-label">Plus</p>
+            <ul class="tags alt">
+              <li>Participatory DJ-ing</li>
+              <li>Creative health &amp; wellbeing sessions</li>
+              <li>Mini gigs</li>
+              <li>Discussions at dinner</li>
+              <li>‘Make parties’</li>
+              <li>And more</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -654,13 +632,6 @@
 
 
   <!-- Full text for letters that don't appear elsewhere on the page -->
-  <template id="letter-hct">
-    <p>Hampshire Cultural Trust is pleased to support Elephant Dreamland's project to establish a dedicated contemporary arts, studio and exhibition space in Gosport, creating opportunities for artists, young people and local communities to engage in creative exchange and cultural activity.</p>
-    <p>(…)</p>
-    <p>This project aligns strongly with Hampshire Cultural Trust's objectives as an Arts Council England National Portfolio Organisation. Through our Cultural Development programme, we work to increase participation in arts and culture, particularly in priority places including Gosport, by creating opportunities for people to engage with high-quality creative experiences and develop their own creative practice. The proposed programme will support increased cultural participation amongst local residents and young people, while bringing artists into dialogue with communities through meaningful exchange and collaboration.</p>
-    <p>The project also contributes to our commitment to place-based cultural development by strengthening Gosport's cultural infrastructure, fostering local creative networks, attracting artists to work in the area, and helping to build a sustainable and visible cultural offer for the borough.</p>
-    <p>We are delighted to support this exciting initiative.</p>
-  </template>
   <template id="letter-sean-hawkridge">
     <p>I am writing to give my full support to Elephant Dreamland's project to establish a dedicated arts space and programme in Gosport, and to confirm my commitment to it as a partner.</p>
     <p>Gosport is a town of around 80,000 people with very little space for artists and communities to make and share work. Elephant Dreamland sets out to change that, offering a home for creative activity that is rooted in the town and open to the people who live there. It is exactly the kind of project that deserves to be seen, found and used by as many people as possible.</p>
