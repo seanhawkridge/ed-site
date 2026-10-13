@@ -15,7 +15,7 @@
   <link rel="icon" type="image/png" href="images/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -33,7 +33,7 @@
       --neon-violet: #8a2bff;
       --radius: 14px;
       --max: 1080px;
-      --serif: "Fraunces", Georgia, serif;
+      --display: "Space Grotesk", "Inter", system-ui, sans-serif;
       --sans: "Inter", system-ui, -apple-system, sans-serif;
     }
 
@@ -64,7 +64,8 @@
     }
     img { max-width: 100%; display: block; }
     a { color: var(--accent-2); }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.2; margin: 0 0 .5em; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 700; line-height: 1.1; letter-spacing: -0.01em; margin: 0 0 .5em; }
+    h1 { font-weight: 700; letter-spacing: -0.025em; }
     h2 { font-size: clamp(1.7rem, 3.5vw, 2.4rem); }
     p { margin: 0 0 1em; }
 
@@ -85,14 +86,14 @@
       border-bottom: 1px solid var(--border);
     }
     .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
-    .nav .brand { font-family: var(--serif); font-weight: 600; font-size: 1.1rem; text-decoration: none; color: var(--text); white-space: nowrap; }
+    .nav .brand { font-family: var(--display); font-weight: 700; font-size: 1.1rem; text-decoration: none; color: var(--text); white-space: nowrap; }
     .nav .brand { display: inline-flex; align-items: center; gap: 10px; }
     .brand-logo { width: 34px; height: 34px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255, 43, 214, .5); }
     .nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; overflow-x: auto; }
     .nav a.link { text-decoration: none; color: var(--muted); font-size: .92rem; font-weight: 500; white-space: nowrap; }
     .nav a.link:hover, .nav a.link.active { color: var(--accent); }
-    @media (max-width: 860px) { .nav ul { gap: 14px; } .nav a.link { font-size: .85rem; } }
-    @media (max-width: 620px) { .nav ul { display: none; } }
+    @media (max-width: 900px) { .nav ul { gap: 14px; } .nav a.link { font-size: .85rem; } }
+    @media (max-width: 720px) { .nav ul { display: none; } }
 
     /* Sections with a darkened photo behind them */
     .bg-photo {
@@ -103,6 +104,25 @@
     }
 
     .bg-photo h2, .bg-photo .eyebrow, .bg-photo p { text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 0 18px rgba(0,0,0,.8); }
+
+    /* Dreamland */
+    .dreamland {
+      min-height: 80vh; display: flex; align-items: center; padding: 120px 0;
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.55) 45%, rgba(0,0,0,0) 75%),
+        #000 url("images/bg-dreamland.jpg") right 55% / auto 125% no-repeat;
+    }
+    .dreamland .wrap { width: 100%; }
+    .dreamland-text { max-width: 560px; }
+    .dreamland h2 { font-size: clamp(2.4rem, 6vw, 4rem); color: #ffe94a; text-shadow: 0 0 18px rgba(255, 233, 74, .55), 0 0 40px rgba(255, 180, 0, .35); }
+    .dreamland blockquote { margin: 0; }
+    .dreamland blockquote p { font-family: var(--display); font-weight: 500; font-size: clamp(1.1rem, 1.8vw, 1.3rem); line-height: 1.5; color: #fff; text-shadow: 0 1px 3px rgba(0,0,0,.9); }
+    .dreamland blockquote p:first-child { font-size: clamp(1.25rem, 2.2vw, 1.55rem); line-height: 1.4; }
+    @media (max-width: 760px) {
+      .dreamland { min-height: 0; padding: 80px 0; background:
+        linear-gradient(180deg, rgba(0,0,0,.6), rgba(0,0,0,.8)),
+        #000 url("images/bg-dreamland.jpg") 70% center / cover no-repeat; }
+    }
 
     /* Hero */
     .hero { padding: 0; border: 0; }
@@ -123,8 +143,7 @@
     .hero-media .wrap { padding-bottom: 64px; padding-top: 120px; }
     .hero h1 { font-size: clamp(2.3rem, 6vw, 4.2rem); max-width: 820px; text-shadow: 0 0 24px rgba(255, 43, 214, .55); }
     .hero p { font-size: 1.25rem; max-width: 640px; opacity: .92; }
-    .hero .tagline { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.3; opacity: 1; max-width: 760px; margin-bottom: .6em; }
-    .hero .tagline span { display: block; font-size: .7em; opacity: .9; margin-top: .2em; }
+    .hero .tagline { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; font-size: clamp(1.5rem, 3vw, 2rem); line-height: 1.3; opacity: 1; max-width: 760px; margin-bottom: .6em; }
     .hero h1, .hero p { text-shadow: 0 1px 3px rgba(0,0,0,.6), 0 0 24px rgba(0,0,0,.45); }
 
     /* Key facts */
@@ -138,13 +157,13 @@
     .fact.lead span { color: rgba(255,255,255,.9); font-size: clamp(1.1rem, 2vw, 1.4rem); }
     .fact strong span { color: inherit; font-size: inherit; }
     .fact { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; }
-    .fact strong { display: block; font-family: var(--serif); font-size: 2rem; color: var(--accent); line-height: 1.1; }
+    .fact strong { display: block; font-family: var(--display); font-weight: 700; letter-spacing: -0.02em; font-size: 2rem; color: var(--accent); line-height: 1.1; }
     .fact span { color: var(--muted); font-size: .95rem; }
     .fact strong { font-variant-numeric: tabular-nums; }
 
     /* Programme */
     .split.programme { align-items: start; }
-    .programme-lead { font-family: var(--serif); font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.3; color: var(--text); }
+    .programme-lead { font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1.3; color: var(--text); }
     .group-label { font-size: .8rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text); margin: 0 0 12px; }
     .tags { list-style: none; margin: 0 0 28px; padding: 0; display: flex; flex-wrap: wrap; gap: 10px; }
     .tags:last-child { margin-bottom: 0; }
@@ -223,7 +242,7 @@
       display: flex; flex-direction: column; justify-content: space-between;
       --c: var(--neon-pink);
     }
-    .voice blockquote { margin: 0; font-family: var(--serif); font-weight: 600; font-size: 1.35rem; line-height: 1.3; color: var(--c); text-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
+    .voice blockquote { margin: 0; font-family: var(--display); font-weight: 600; letter-spacing: -0.01em; font-size: 1.35rem; line-height: 1.3; color: var(--c); text-shadow: 0 0 18px color-mix(in srgb, var(--c) 45%, transparent); }
     .voice.big blockquote { font-size: clamp(1.6rem, 3vw, 2rem); }
     .voice.calm blockquote { font-weight: 400; font-size: 1.1rem; line-height: 1.5; color: var(--text); text-shadow: none; }
     .voice:nth-child(4n+2) { --c: var(--neon-cyan); }
@@ -234,7 +253,7 @@
     /* Letters (pull-quote + full text) */
     .letters { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
     .letter { margin: 0; padding: 28px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--border); backdrop-filter: blur(12px); display: flex; flex-direction: column; }
-    .letter blockquote { margin: 0; font-family: var(--serif); font-size: 1.25rem; line-height: 1.45; flex: 1; }
+    .letter blockquote { margin: 0; font-family: var(--display); font-weight: 500; letter-spacing: -0.005em; font-size: 1.25rem; line-height: 1.45; flex: 1; }
     .letter blockquote::before { content: "\201C"; display: block; font-size: 3rem; line-height: .8; color: var(--accent); margin-bottom: 6px; }
     .letters.two { grid-template-columns: repeat(2, 1fr); align-items: start; }
     @media (max-width: 760px) { .letters.two { grid-template-columns: 1fr; } }
@@ -268,7 +287,7 @@
       width: 100%; display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;
       padding: 18px 4px; background: none; border: 0; color: var(--text); font: inherit; text-align: left; cursor: pointer;
     }
-    .letter-list button strong { font-family: var(--serif); font-size: 1.15rem; font-weight: 600; }
+    .letter-list button strong { font-family: var(--display); font-size: 1.15rem; font-weight: 700; }
     .letter-list button span { color: var(--muted); font-size: .95rem; flex: 1; }
     .letter-list button::after { content: "Read letter \2192"; color: var(--accent-2); font-size: .9rem; font-weight: 600; white-space: nowrap; }
     .letter-list button:hover strong, .letter-list button:focus-visible strong { color: var(--accent); }
@@ -290,6 +309,8 @@
     .letter-modal h3 { font-size: 1.5rem; margin: 0 0 4px; }
     .letter-modal .from { color: var(--muted); margin-bottom: 24px; }
     .letter-modal .letter-body p { margin: 0 0 1em; }
+    .letter-modal .letter-body ul { margin: 0 0 1em; padding-left: 1.2em; }
+    .letter-modal .letter-body li { margin-bottom: .4em; }
 
     footer { padding: 48px 0; color: var(--muted); font-size: .92rem; border-top: 1px solid var(--border); }
     .social { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 16px; }
@@ -328,11 +349,10 @@
       <a class="brand" href="#top"><img src="images/logo.png" alt="" class="brand-logo">Elephant Dreamland</a>
       <ul>
         <li><a class="link" href="#about">About</a></li>
-        <li><a class="link" href="#video">Watch</a></li>
         <li><a class="link" href="#support">Support</a></li>
         <li><a class="link" href="#documents">Documents</a></li>
+        <li><a class="link" href="#video">A previous project</a></li>
         <li><a class="link" href="#projects">Future projects</a></li>
-        <li><a class="link" href="#tedx">TEDx</a></li>
       </ul>
     </div>
   </nav>
@@ -343,7 +363,7 @@
         <img src="images/logo.png" alt="Elephant Dreamland logo" class="hero-logo">
         <div class="eyebrow" style="color:#fff;opacity:.85">Shhh - this is a secret holding page</div>
         <h1>Coming soon: Elephant Dreamland</h1>
-        <p class="tagline">An art space for Gosport <span>– for inspiration, participation, re&#8209;connection, and creative escape.</span></p>
+        <p class="tagline">An art space for Gosport – for inspiration, participation, re&#8209;connection, and creative escape.</p>
         <p>Putting the best contemporary art experiences in the centre of our town, and helping to put our town on the map.</p>
       </div>
     </div>
@@ -387,22 +407,6 @@
           <div class="fact"><strong data-count="2419">2,419</strong><span>participations in creative activity</span></div>
           <div class="fact"><strong data-count="304">304</strong><span>performances by young people</span></div>
           <div class="fact"><strong><span data-count="5">5</span> yrs</strong><span>track record</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="video">
-      <div class="wrap">
-        <div class="eyebrow">Watch</div>
-        <h2>Too Hot to Handel!</h2>
-        <div class="videos">
-          <!-- YouTube: set data-id to the video ID (the part after v=). Thumbnail loads automatically. -->
-          <figure class="video reveal" style="margin:0">
-            <button class="video-embed" data-provider="youtube" data-id="7dagUK916FA" aria-label="Play video: Too Hot to Handel!">
-              <span class="play"></span>
-            </button>
-            <figcaption>Too Hot to Handel! Award-winning project documentary by young filmmakers Isla and Sonny.</figcaption>
-          </figure>
         </div>
       </div>
     </section>
@@ -546,12 +550,29 @@
           <li><button type="button" data-letter="letter-clare-campbell"><strong>Clare Campbell</strong><span>Gosport-based playwright</span></button></li>
           <li><button type="button" data-letter="letter-motiv8"><strong>Motiv8</strong><span>On Too Hot To Handel</span></button></li>
           <li><button type="button" data-letter="letter-hct"><strong>Laura Bullivant</strong><span>Cultural Development Manager, Hampshire Cultural Trust</span></button></li>
+          <li><button type="button" data-letter="letter-sean-hawkridge"><strong>Sean Hawkridge</strong><span>Web Designer</span></button></li>
         </ul>
 
         <h3 class="docs-heading">Project documents</h3>
         <div class="docs">
           <!-- When the timeline is ready: save it as docs/project-timeline.pdf, change this <div> to <a class="doc" href="docs/project-timeline.pdf"> and the label to "PDF" -->
           <div class="doc pending"><strong>Project timeline</strong><span>Coming soon</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="video">
+      <div class="wrap">
+        <div class="eyebrow">A previous project</div>
+        <h2>Too Hot to Handel!</h2>
+        <div class="videos">
+          <!-- YouTube: set data-id to the video ID (the part after v=). Thumbnail loads automatically. -->
+          <figure class="video reveal" style="margin:0">
+            <button class="video-embed" data-provider="youtube" data-id="7dagUK916FA" aria-label="Play video: Too Hot to Handel!">
+              <span class="play"></span>
+            </button>
+            <figcaption>Too Hot to Handel! Award-winning project documentary by young filmmakers Isla and Sonny.</figcaption>
+          </figure>
         </div>
       </div>
     </section>
@@ -585,6 +606,18 @@
             <img src="images/residency-6.jpg" alt="" loading="lazy">
             <h3>Residency title 6</h3>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="dreamland" class="dreamland">
+      <div class="wrap">
+        <div class="dreamland-text reveal">
+          <h2>Inspiration</h2>
+          <blockquote>
+            <p>Inspired by Dreamland Margate, an unapologetically fun seaside venue at the heart of the town’s cultural revival — and the other Dreamland, brought to life through Lewis Carroll’s playfully subversive imagination. A belief in creativity’s power to transform places and open up new worlds.</p>
+            <p>Inspired by Dreamland’s impact on Margate’s regeneration, a seaside town turned around by an influx of creativity, led by a dusty retro music venue with a sense of fun…And another Dreamland, created by Lewis Carroll, making sense of the world through disruptive creativity.</p>
+          </blockquote>
         </div>
       </div>
     </section>
@@ -627,6 +660,24 @@
     <p>This project aligns strongly with Hampshire Cultural Trust's objectives as an Arts Council England National Portfolio Organisation. Through our Cultural Development programme, we work to increase participation in arts and culture, particularly in priority places including Gosport, by creating opportunities for people to engage with high-quality creative experiences and develop their own creative practice. The proposed programme will support increased cultural participation amongst local residents and young people, while bringing artists into dialogue with communities through meaningful exchange and collaboration.</p>
     <p>The project also contributes to our commitment to place-based cultural development by strengthening Gosport's cultural infrastructure, fostering local creative networks, attracting artists to work in the area, and helping to build a sustainable and visible cultural offer for the borough.</p>
     <p>We are delighted to support this exciting initiative.</p>
+  </template>
+  <template id="letter-sean-hawkridge">
+    <p>I am writing to give my full support to Elephant Dreamland's project to establish a dedicated arts space and programme in Gosport, and to confirm my commitment to it as a partner.</p>
+    <p>Gosport is a town of around 80,000 people with very little space for artists and communities to make and share work. Elephant Dreamland sets out to change that, offering a home for creative activity that is rooted in the town and open to the people who live there. It is exactly the kind of project that deserves to be seen, found and used by as many people as possible.</p>
+    <p>As part of my support, I commit £14,000 of in-kind support to design, build, host and maintain Elephant Dreamland's web presence. This covers the full design and development of a bespoke website and custom content management system, together with hosting, maintenance and ongoing technical support for five years.</p>
+    <p>The website will be the public front door to Elephant Dreamland. It will include:</p>
+    <ul>
+      <li>a portfolio showcasing the artists, projects and activity taking place in the space</li>
+      <li>news and updates, so local people always know what is happening and how to get involved</li>
+      <li>a booking facility, allowing artists, groups and community organisations to hire the space directly</li>
+      <li>integration with ticketing for events, workshops and performances</li>
+      <li>a growing archive of past activity, building a lasting record of the project's impact on the town</li>
+      <li>rich content such as images, video and audio, giving artists' work the presentation it deserves</li>
+    </ul>
+    <p>All of this will be managed through a custom CMS designed around how the project actually works, so they can update the site quickly and confidently without technical help. Because hosting and support are included for five years, the project will have a secure, reliable platform from day one and no ongoing web costs to absorb as it grows.</p>
+    <p>A strong online presence matters especially in a place like Gosport, where there are limited established venues for people to look to. The website will help Elephant Dreamland reach new audiences and participants, make the space easy to book and use, and give funders and partners a clear, public view of the work being delivered.</p>
+    <p>I am delighted to support this initiative and look forward to helping Elephant Dreamland build a lasting cultural presence in Gosport.</p>
+    <p>Sean Hawkridge</p>
   </template>
 
   <dialog class="letter-modal" aria-labelledby="letter-modal-title">
