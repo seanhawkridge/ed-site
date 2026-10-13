@@ -779,7 +779,7 @@
     </div>
   </dialog>
 
-  <dialog class="letter-modal" aria-labelledby="letter-modal-title">
+  <dialog id="letter-modal" class="letter-modal" aria-labelledby="letter-modal-title">
     <button type="button" class="close" aria-label="Close letter">&times;</button>
     <div class="modal-inner">
       <h3 id="letter-modal-title"></h3>
@@ -815,7 +815,7 @@
     });
 
     // Letters of support: open the full letter in a modal
-    const modal = document.querySelector(".letter-modal");
+    const modal = document.getElementById("letter-modal");
     document.querySelectorAll(".letter-list button").forEach(btn => {
       btn.addEventListener("click", () => {
         const src = document.getElementById(btn.dataset.letter);
